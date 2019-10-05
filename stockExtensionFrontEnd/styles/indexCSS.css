@@ -1,0 +1,50 @@
+html, body {
+  height: 100%
+}
+input { border: 1px solid #000; padding: 5px; }
+
+select.error, textarea.error, input.error, label.error {
+  color:#FF0000;
+}
+
+select.error, input.error{
+  border-color: #d9534f;
+}
+
+.tickerForm{
+  border-bottom: solid 4px #2B3E50;
+  background: white;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+}
+.tickerForm::placeholder {
+  color: #2B3E50;
+}
+.navy{
+  color: #2B3E50;
+}
+
+.container {
+margin: 0;
+max-width: 100%;
+  flex-basis: 100%;
+  max-height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  &.proximity {
+          scroll-snap-type: y proximity;
+  }
+}
+
+.item {
+  scroll-snap-align: start;
+  display: flex;
+  flex-flow: column;
+}
+
+.carousel-inner > .item >img{
+max-height : 100px;
+width : 100%;
+}

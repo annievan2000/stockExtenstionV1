@@ -1,0 +1,377 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+<head>
+    <title>stockX</title>
+    <meta charset = "UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src ="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+    <script src="https://unpkg.com/react@16.4.1/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16.4.1/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <script src= "scripts/moment.js"></script>
+    <link rel="stylesheet" href="styles/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="styles/customCSS.css" type="text/css">
+</head>
+<body class="bg-light">
+    <div id='navbarDiv'></div>
+    <script src="scripts/loadNavbar.js"></script>
+
+
+    <div class="container fixed-height-viewport" style="max-width: 1115px !important;">
+        <div class="row no-gutters" style="height:100%;" >
+
+            <div class = "col-2 fixed-height-viewport" style="margin-right: 0px; ">
+
+              <!-- <p style ="font-size: 25px; margin-top: 15px; margin-left: 3px;margin-bottom: 0px;"> Calendar</p> -->
+              <p id="monthName"><button class = "transparentButton" type= "button" id="prevMon"><</button>
+                <span id = "grid-name"></span><button class = "transparentButton" type= "button" id="nextMon">></button></p>
+              <!-- THIS DIV CONTAINS GRID FOR CALENDAR -->
+              <div id="grid-container">
+              </div>
+              <!-- THIS SCRIPT BOLDS CURRENT DAY -->
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h2 class="modal-title" id="exampleModalLabel" style= "font-size: 20px;">Modal title</h2>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p class ="interval">Modal Body</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" id = "deleteButton" class="btn btn-primary">Delete</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+                <div id = "gadgetPanel" class="card cardBorderShadow" style="box-shadow:var(--cardBorderShadow)">
+                  <p class = "eventInput">Description: </p><textarea type="text" name="eventDescription" style = "min-height: 75px;"id = "submitDescription"></textarea><br>
+                  <p class = "eventInput"> Month: </p>
+                  <select name="month" id = "submitMonth">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                  </select>
+                </br>
+                  <p class = "eventInput">Day: </p>
+                  <select name="dayss" id = "submitDay">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                    <option>20</option>
+                    <option>21</option>
+                    <option>22</option>
+                    <option>23</option>
+                    <option>24</option>
+                    <option>25</option>
+                    <option>26</option>
+                    <option>27</option>
+                    <option>28</option>
+                    <option>29</option>
+                    <option>30</option>
+                    <option>31</option>
+                  </select>
+                </br>
+                  <p class = "eventInput">Year </p>
+                  <select name="year" id = "submitYear">
+                    <option>2019</option>
+                    <option>2020</option>
+                    <option>2021</option>
+                    <option>2022</option>
+                  </select>
+                  </br>
+                  <p class = "eventInput"> Start time: </p>
+                  <select name="startTime" id = "submitStartTime">
+                    <option>12:00AM</option>
+                    <option>12:30AM</option>
+                    <option>1:00AM</option>
+                    <option>1:30AM</option>
+                    <option>2:00AM</option>
+                    <option>2:30AM</option>
+                    <option>3:00AM</option>
+                    <option>3:30AM</option>
+                    <option>4:00AM</option>
+                    <option>4:30AM</option>
+                    <option>5:00AM</option>
+                    <option>5:30AM</option>
+                    <option>6:00AM</option>
+                    <option>6:30AM</option>
+                    <option>7:00AM</option>
+                    <option>7:30AM</option>
+                    <option>8:00AM</option>
+                    <option>8:30AM</option>
+                    <option>9:00AM</option>
+                    <option>9:30AM</option>
+                    <option>10:00AM</option>
+                    <option>10:30AM</option>
+                    <option>11:00AM</option>
+                    <option>11:30AM</option>
+                    <option>12:00PM</option>
+                    <option>12:30PM</option>
+                    <option>1:00PM</option>
+                    <option>1:30PM</option>
+                    <option>2:00PM</option>
+                    <option>2:30PM</option>
+                    <option>3:00PM</option>
+                    <option>3:30PM</option>
+                    <option>4:00PM</option>
+                    <option>4:30PM</option>
+                    <option>5:00PM</option>
+                    <option>5:30PM</option>
+                    <option>6:00PM</option>
+                    <option>6:30PM</option>
+                    <option>7:00PM</option>
+                    <option>7:30PM</option>
+                    <option>8:00PM</option>
+                    <option>8:30PM</option>
+                    <option>9:00PM</option>
+                    <option>9:30PM</option>
+                    <option>10:00PM</option>
+                    <option>10:30PM</option>
+                    <option>11:00PM</option>
+                    <option>11:30PM</option>
+                  </select>
+                  </br>
+                  <p class = "eventInput"> End Time: </p>
+                  <select name="endTime" id = "submitEndTime">
+                    <option>12:00AM</option>
+                    <option>12:30AM</option>
+                    <option>1:00AM</option>
+                    <option>1:30AM</option>
+                    <option>2:00AM</option>
+                    <option>2:30AM</option>
+                    <option>3:00AM</option>
+                    <option>3:30AM</option>
+                    <option>4:00AM</option>
+                    <option>4:30AM</option>
+                    <option>5:00AM</option>
+                    <option>5:30AM</option>
+                    <option>6:00AM</option>
+                    <option>6:30AM</option>
+                    <option>7:00AM</option>
+                    <option>7:30AM</option>
+                    <option>8:00AM</option>
+                    <option>8:30AM</option>
+                    <option>9:00AM</option>
+                    <option>9:30AM</option>
+                    <option>10:00AM</option>
+                    <option>10:30AM</option>
+                    <option>11:00AM</option>
+                    <option>11:30AM</option>
+                    <option>12:00PM</option>
+                    <option>12:30PM</option>
+                    <option>1:00PM</option>
+                    <option>1:30PM</option>
+                    <option>2:00PM</option>
+                    <option>2:30PM</option>
+                    <option>3:00PM</option>
+                    <option>3:30PM</option>
+                    <option>4:00PM</option>
+                    <option>4:30PM</option>
+                    <option>5:00PM</option>
+                    <option>5:30PM</option>
+                    <option>6:00PM</option>
+                    <option>6:30PM</option>
+                    <option>7:00PM</option>
+                    <option>7:30PM</option>
+                    <option>8:00PM</option>
+                    <option>8:30PM</option>
+                    <option>9:00PM</option>
+                    <option>9:30PM</option>
+                    <option>10:00PM</option>
+                    <option>10:30PM</option>
+                    <option>11:00PM</option>
+                    <option>11:30PM</option>
+                  </select>
+                  <button id = "submitEvent" type="button" class="btn btn-primary" style= " color: white;margin-top:60px;">Submit</button>
+
+                  <script src = "scripts/calendarDates.js"></script>
+                  <script src = "scripts/boldsDay.js"></script>
+
+                </div>
+
+            </div>
+
+            <div class = "col-5 fixed-height-viewport">
+
+                <div id = "tickersPanel" class="card cardBorderShadow" style="box-shadow:var(--cardBorderShadow)">
+                    <!-- The title container displays a brief synopsis for each ticker-->
+                    <div class="card-body" style="position:relative">
+
+                        <div id = "titleContainer">
+                            <p id = "tickerName"></p>
+                            <span id = "tickerPrice"></span>
+                            USD <span id = "tickerPercentages"></span>
+                            <p id = "tickerClosing"></p>
+                        </div>
+
+                        <div style="position:absolute; right:50px; top:50px">
+                            <i id = "searchTickerIcon" class="fa fa-search" style="cursor:pointer"></i>
+                            <i id="arrowIcon" class="fa fa-arrow-right" style="cursor:pointer" data-toggle="modal" data-target="#myModal"></i>
+                        </div>
+                        <div id = "searchTickerDiv" class = "box sb4 fixed-content" style="display:none; position: absolute;  top:75px; right:45px; width: 240px; height: 65px; background: black; opacity: 0.8; z-index: 1000;border-radius: 5px;">
+                            <div class="form-group row">
+                                <div style = "padding-top: 10px; padding-left: 30px; height: 10px; border-top: 0px; border-left: 0px; border-right: 0px; box-shadow: none;">
+                                    <input type="text" class="form-control form-control-sm" style = "color: white; padding-left: 0px; font-size: 11px;border-left: 0px; width: 175px; border-right: 0px; border-top: 0px; border-bottom: solid 2px white;border-radius: 0px; background: transparent" id="switchTickerInput" placeholder="Change your ticker">
+                                </div>
+                                <p id = "submitTickerChange" style = "cursor:pointer; padding-top: 4%;padding-left: 3%; margin-bottom: 0px;font-size: 18px; color: white;">GO</p>
+                                <span id="loadIcon" class="spinner-border spinner-border-md" role="status" aria-hidden="false" style= " display: none; padding-top: 4%; margin-left: 3%; margin-bottom: 0px;font-size: 18px; margin-top: 5%"></span>
+
+                            </div>
+                        </div>
+
+
+
+                        <div id = "chartContainer" >
+                        <!-- The id canvas is important (see onButtonsClicked for more info). The actual canvas just needed to be in a div-->
+                            <div id = "canvas">
+                                <canvas id = "canvasContainer"> </canvas>
+                            </div>
+                            </br>
+                            <div id = "allButtons">
+                                <ul>
+                                    <li><button type="button" id = "getCanvas"></button></li>
+                                    <li><button type="button" id = "getCanvas2"></button></li>
+                                    <li><button type="button" id = "getCanvas3"></button></li>
+                                    <li><button type="button" id = "getCanvas4"></button></li>
+                                    <li><button type="button" id = "getCanvas5"></button></li>
+                                </ul>
+                                <!-- Controls the little circle that shows when you click the box-->
+                                <div class="circle" id= "circle1"></div>
+                                <div class="circle" id= "circle2"></div>
+                                <div class="circle" id= "circle3"></div>
+                                <div class="circle" id= "circle4"></div>
+                                <div class="circle" id= "circle5"></div>
+                            </div>
+                        </div> <!-- Ends chartContainer div -->
+                    </div> <!-- Ends card-body -->
+                </div>
+
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-xl">
+
+                        <!-- Modal content-->
+                        <div class="modal-content card border-primary mb-3">
+                            <div class="modal-header">
+                                <h5  id ="modalTickerName" class="modal-title display-5 text-primary">Dummy Value</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <div id="wait" class="spinner-border text-info" style="margin: 0 auto; display:none"></div>
+                                    <div id="fundamentals-container">
+                                        <table class="table" id = "fundamentalsTable">
+
+                                        </table>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id = "sentimentPanel" class="card mb-3card BorderShadow" style="box-shadow:var(--cardBorderShadow)">
+
+                </div>
+                <script src="scripts/loadSentiment.js"></script>
+                <!-- end of sentimentPanel-->
+            </div>
+
+
+            <div class="col-5 fixed-height-viewport"> <!-- THIRD COLUMN -->
+
+                <!-- or just class: card -->
+                <div id="marketPanel" style="padding:0.75em;"class="card cardBorderShadow" style="box-shadow:var(--cardBorderShadow)">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#sp">S&P 500</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#dow">DOW</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#nasdaq">NASDAQ</a>
+                        </li>
+                    </ul>
+
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade active show" id="sp" style="padding:10px">
+                        <!-- Create a canvas here -->
+                            <div id = "canvas2" style="height:200px; padding:20px">
+                                <canvas id = "SPChart"> </canvas>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="dow">
+                            <div id="canvas3" style="height:200px; padding:20px">
+                                <canvas id = "DOWChart"> </canvas>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nasdaq">
+                            <div id = "canvas4" style="height:200px; padding:20px">
+                                <canvas id = "NASDAQChart"> </canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="actionPanel" style="overflow:auto; padding:10px" class="card cardBorderShadow" style="box-shadow:var(--cardBorderShadow)">
+                  <table class="table" id = "actionTable">
+                    <thead>
+                    </thead>
+                     <tbody style = "height:150px">
+                       <tr>
+                         <td colspan="2" style = "display: none"></td>
+                         <td style = "display: none"></td>
+                         <td style = "display: none"></td>
+                       </tr>
+                     </tbody>
+                   </table>
+                </div>
+
+            </div> <!-- ENDS 3RD COLUMN -->
+        </div> <!-- This ends the row container -->
+        <script src="scripts/loadInitial.js"> </script>
+        <script src = "scripts/onButtonsClicked.js"></script>
+        <script src="scripts/setUpdates.js"></script>
+        <script src = "scripts/search.js"></script>
+    </div> <!-- this ends the entire div container-- >
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+
+
+{
+  "manifest_version": 2,
+  "name": "stockX",
+  "version": "0.001",
+  "chrome_url_overrides" : {
+    "newtab": "index.html"
+  },
+  "permissions": [
+      "storage"
+    ],
+    "content_security_policy": "script-src 'self' https://code.jquery.com/jquery-3.1.1.min.js https://code.jquery.com/jquery-3.2.1.slim.min.js https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js https://ajax.googleapis.com https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js https://unpkg.com/react@16.4.1/umd/react.production.min.js https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js https://unpkg.com/react-dom@16.4.1/umd/react-dom.production.min.js https://code.jquery.com/ui/1.12.0/jquery-ui.min.js 'unsafe-eval'; object-src 'self'"
+
+
+}
